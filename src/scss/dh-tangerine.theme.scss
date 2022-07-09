@@ -1,0 +1,27 @@
+@use "sass:map";
+
+@function dh-tangerine-theme() {
+  $tangerine: #f28601;
+  $tangerine-lighter: #f0961b;
+  $tangerine-darker: #df7b01;
+  $marigold-darker: #eda734;
+  $marigold: #eebc5a;
+  $marigold-lighter: #efd080;
+  $green: #619237;
+  $green-darker: #3b5922;
+  $green-lighter: #75b143;
+  $dh-tangerine-color-palettes: (
+    "primary": $tangerine,
+    "primary-darker": $tangerine-darker,
+    "primary-lighter": $tangerine-lighter,
+    "accent": $marigold,
+    "accent-darker": $marigold-darker,
+    "accent-lighter": $marigold-lighter,
+    "secondary": $green,
+    "secondary-lighter": $green-lighter,
+    "secondary-darker": $green-darker,
+  );
+  @return map.merge($common-palettes, dh-tangerine-color-palettes);
+}
+
+$dh-color-system: dh-tangerine-theme();

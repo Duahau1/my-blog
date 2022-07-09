@@ -1,0 +1,22 @@
+.carousel-modal {
+  height: 100%;
+  position: relative;
+}
+
+.carousel-container {
+  height: 100%;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .MuiCard-root.blog-post-preview {
+    position: absolute;
+  }
+  .carousel-control {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

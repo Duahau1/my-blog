@@ -1,0 +1,51 @@
+div.animationTab {
+  position: sticky;
+  top: 0;
+  background-color: map.get($dh-color-system, "primary-darker");
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  gap: 10px;
+  .animatedLogo {
+    height: 100%;
+    margin-left: 10px;
+    border-bottom: 4px solid #fff;
+    cursor: pointer;
+    > svg {
+      height: 25px;
+    }
+  }
+  .MuiTabs-root {
+    width: 100%;
+
+    .MuiTabs-flexContainer {
+      height: 100px;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-right: 10px;
+      .MuiButtonBase-root.MuiTab-root {
+        border-radius: 30px;
+        font-weight: bold;
+        &:not(.Mui-selected) {
+          transition: background-color 0.125s ease-in, color 0.126s ease-out;
+
+          &:hover {
+            background-color: map.get($dh-color-system, "accent-lighter");
+            color: map.get($dh-color-system, "dark");
+          }
+          color: map.get($dh-color-system, "white");
+        }
+        &.Mui-selected {
+          color: map.get($dh-color-system, "accent");
+          border: 2px solid map.get($dh-color-system, "accent-darker");
+        }
+      }
+    }
+    .MuiTabs-indicator {
+      display: none;
+    }
+  }
+}

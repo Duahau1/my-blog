@@ -1,0 +1,17 @@
+
+
+**/package-lock.json
+**/package.json
+
+
+README.md
+build
+coverage
+dist
+node_modules
+package-lock.json
+package.json
+public
+src/assets
+src/conf
+vendor

@@ -1,0 +1,31 @@
+@use "sass:map";
+@import url("https://fonts.googleapis.com/css2?family=Sen&display=swap");
+@import "./scss/dh-nautilus.theme.scss";
+@import "./scss/common.selector.scss";
+
+$dh-font: "Sen", sans-serif;
+
+* {
+  box-sizing: border-box;
+  font-family: $dh-font !important;
+  line-height: 1.75rem;
+  margin: 0;
+}
+:root {
+  @import "~highlight.js/scss/github-dark.scss";
+  .App {
+    background-color: map.get($dh-color-system, "dark");
+    color: map.get($dh-color-system, "white");
+  }
+  background-color: map.get($dh-color-system, "dark");
+  #root {
+    display: grid;
+    grid-template-rows: 100px 1fr 104px;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+}
+.dh-tangerine-theme {
+  @import "~highlight.js/scss/github-dark.scss";
+}

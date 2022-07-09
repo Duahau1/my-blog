@@ -1,0 +1,57 @@
+@use "sass:map";
+@import "../../scss/dh-nautilus.theme.scss";
+.btn-trigger {
+  min-width: 120px;
+  padding: 18px 25px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  font-weight: bolder;
+  letter-spacing: 0.5px;
+  background: map.get($dh-color-system, "accent");
+  color: map.get($dh-color-system, "dark");
+  border-radius: 10px;
+  span {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: map.get($dh-color-system, "accent");
+    border-radius: 15px;
+    pointer-events: none;
+  }
+  .btn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: map.get($dh-color-system, "accent");
+    &.top-right {
+      top: 0;
+      right: 0;
+    }
+    &.top-left {
+      top: 0;
+      left: 0;
+    }
+    &.bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+    &.bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+  }
+}

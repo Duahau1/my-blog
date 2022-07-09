@@ -1,0 +1,6 @@
+footer.footer {
+  background-color: map.get($dh-color-system, "primary-darker");
+  height: 104px;
+  color: map.get($dh-color-system, "white");
+  text-align: center;
+}

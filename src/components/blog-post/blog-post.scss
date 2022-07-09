@@ -1,0 +1,88 @@
+:root .blog-post-container {
+  &.MuiCard-root {
+    background-color: map.get($dh-color-system, "dark");
+    color: map.get($dh-color-system, "white");
+    overflow-y: auto;
+    .blog-post-landing-page-img.MuiCardMedia-root {
+      border: 50px solid map.get($dh-color-system, "dark");
+      border-top: none;
+      border-bottom-width: 50px;
+      max-height: 500px;
+      pointer-events: none;
+    }
+    .blog-post-metadata {
+      color: map.get($dh-color-system, "accent-darker");
+    }
+    .MuiCardHeader-content .MuiTypography-root {
+      text-align: center;
+      font-size: 4rem;
+      line-height: 60px;
+      margin-top: 10px;
+      color: map.get($dh-color-system, "accent-lighter");
+    }
+    .MuiCardContent-root {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 10px;
+      padding: 0 50px;
+      iframe {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0 1px 2px map.get($dh-color-system, "primary-darker");
+      }
+      .blog-post-content {
+        p {
+          margin: 10px 0;
+        }
+        h1,
+        h2 {
+          color: map.get($dh-color-system, "accent-lighter");
+        }
+        a {
+          text-decoration: map.get($dh-color-system, "secondary") 2px solid
+            underline;
+          color: map.get($dh-color-system, "secondary");
+        }
+        .inline-img {
+          width: 100%;
+        }
+        code.hljs {
+          background-color: rgba(
+            map.get($dh-color-system, "primary-lighter"),
+            0.7
+          );
+          white-space: pre-wrap;
+          display: inline-block;
+          border-radius: 15px;
+          &.codeContainer {
+            box-shadow: 0 0 1px 2px map.get($dh-color-system, "primary-darker");
+            border: 1px solid map.get($dh-color-system, "primary");
+            width: 100%;
+            padding: 10px;
+            overflow-wrap: break-word;
+            .copyToClipboard {
+              height: 20px;
+              display: block;
+              width: 20px;
+              float: right;
+              cursor: pointer;
+            }
+          }
+          &.codeShortContainer {
+            margin: 0 1px;
+            color: map.get($dh-color-system, "accent");
+            > * {
+              color: inherit;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 1100px) {
+      .MuiCardContent-root {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 100%));
+      }
+    }
+  }
+}

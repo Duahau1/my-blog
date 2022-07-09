@@ -1,0 +1,15 @@
+@use "sass:map";
+@import "../../scss/dh-nautilus.theme.scss";
+.blog-module-container {
+  display: flex;
+  padding: 30px;
+  justify-content: space-between;
+  gap: 30px;
+}
+@media only screen and (max-width: 920px) {
+  .blog-module-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-y: auto;
+  }
+}

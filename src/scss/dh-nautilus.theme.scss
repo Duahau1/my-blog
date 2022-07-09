@@ -1,0 +1,26 @@
+@import "./common.theme.scss";
+
+@function dh-nautilus-theme() {
+  $blue-darker: #25344d;
+  $blue-lighter: #184e70;
+  $blue: #1f415f;
+  $gold: #eab721;
+  $gold-darker: #d5a61e;
+  $gold-lighter: #eab450;
+  $seaweed-darker: #2d7583;
+  $seaweed-lighter: #36a4a2;
+  $seaweed: #328190;
+  $dh-nautilus-color-palettes: (
+    "primary": $blue,
+    "primary-darker": $blue-darker,
+    "primary-lighter": $blue-lighter,
+    "accent": $gold,
+    "accent-darker": $gold-darker,
+    "accent-lighter": $gold-lighter,
+    "secondary": $seaweed,
+    "secondary-lighter": $seaweed-lighter,
+    "secondary-darker": $seaweed-darker,
+  );
+  @return map.merge($common-palettes, $dh-nautilus-color-palettes);
+}
+$dh-color-system: dh-nautilus-theme();

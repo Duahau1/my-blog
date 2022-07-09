@@ -1,0 +1,23 @@
+@use "sass:map";
+@import "../../scss/dh-nautilus.theme.scss";
+.author-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .author-information {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: map.get($dh-color-system, "secondary-lighter");
+    font-weight: 900;
+    :first-child {
+      text-decoration: map.get($dh-color-system, "secondary") 6px solid
+        underline;
+    }
+  }
+  .author-links {
+    svg {
+      fill: map.get($dh-color-system, "white");
+    }
+  }
+}
