@@ -1,32 +1,44 @@
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import React, { useEffect, useState } from 'react'
+import _ from 'lodash-es'
+import { useEffect, useState } from 'react'
 import BlogPostPreview from '../blog-post/blog-post-preview.component'
 import './carousel.scss'
 export default function Carousel(props: any) {
-  const blogPostPreviews = props.items
-  const [itemObj, setItemObj] = useState([])
-  const [deg, setDeg] = useState(0)
-  const [oldDeg, setoldDeg] = useState(0)
-  const [show, setShow] = useState(false)
-  const [carouselHeight, setCarouselHeight] = useState(window.innerHeight - 204)
-  const [rangeX, setRangeX] = useState(window.innerWidth - 300)
   const SPEED = 5
-  let counter = oldDeg
+  const [carouselHeight, setCarouselHeight] = useState(window.innerHeight - 204)
+  const [deg, setDeg] = useState(0)
+  const [itemObj, setItemObj] = useState([])
+  const [oldDeg, setOldDeg] = useState(0)
+  const [rangeX, setRangeX] = useState(window.innerWidth - 300)
+  const [show, setShow] = useState(false)
+  const blogPostPreviews = props.items
+  const [blockClick, setBlockClick] = useState(false)
   const itemNumber = blogPostPreviews.length
   const itemSeparation = 360 / itemNumber
+  let counter = oldDeg
 
   function degToRad(input) {
     return input * (Math.PI / 180)
   }
 
   function handleNext() {
-    setoldDeg(deg)
-    setDeg((curDeg) => Number(curDeg) + itemSeparation)
+    if (!blockClick) {
+      setOldDeg(deg)
+      setDeg((curDeg) => {
+        return Number(curDeg) + itemSeparation
+      })
+      setBlockClick(true)
+    }
   }
   function handlePrev() {
-    setoldDeg(deg)
-    setDeg((curDeg) => Number(curDeg) - itemSeparation)
+    if (!blockClick) {
+      setOldDeg(deg)
+      setDeg((curDeg) => {
+        return Number(curDeg) - itemSeparation
+      })
+      setBlockClick(true)
+    }
   }
   function animation() {
     let done = false
@@ -37,6 +49,7 @@ export default function Carousel(props: any) {
     } else if (deg - oldDeg > 0 && counter < deg) {
       counter += SPEED
     } else {
+      setBlockClick(false)
       done = true
     }
     const temp = []
@@ -67,6 +80,9 @@ export default function Carousel(props: any) {
     }
 
     window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', _.noop)
+    }
   }, [])
   useEffect(() => {
     let mounted = true

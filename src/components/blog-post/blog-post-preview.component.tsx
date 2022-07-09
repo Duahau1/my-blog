@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardHeader, CardMedia } from '@mui/material'
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { PreviewBlogPostType } from '../../models/blog-post.model'
 import DHButton from '../button/button.component'
 import './blog-post-preview.scss'

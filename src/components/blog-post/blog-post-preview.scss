@@ -1,28 +1,49 @@
-@use "sass:map";
-@import "../../scss/dh-nautilus.theme.scss";
+@use 'sass:map';
+@import '../../scss/dh-nautilus.theme.scss';
 .MuiCard-root.blog-post-preview {
-  color: map.get($dh-color-system, "white");
-  border-radius: 15px;
-  background-color: transparent;
-  background-image: linear-gradient(
-    90deg,
-    map.get($dh-color-system, "primary-darker"),
-    map.get($dh-color-system, "secondary-darker")
-  );
-  background-size: 200%;
+  overflow: visible;
+  color: map.get($dh-color-system, 'dark');
+  background-color: map.get($dh-color-system, 'secondary');
   width: 300px;
   transition: all 0.4s cubic-bezier(0.49, 0.04, 0, 1);
-  &:hover {
-    transform: scale(1.05);
-    background-position: 100%;
-  }
 
+  &:hover {
+    &::before {
+      top: 5px;
+      left: 5px;
+      width: calc(100% - 9px);
+      height: calc(100% - 9px);
+    }
+    &::after {
+      top: 5px;
+      left: 5px;
+    }
+  }
+  &::before {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    content: '';
+    border-left: 4px solid map.get($dh-color-system, 'dark');
+    border-top: 4px solid map.get($dh-color-system, 'dark');
+    width: calc(100% - 14px);
+    height: calc(100% - 24px);
+    z-index: 3;
+  }
+  &::after {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    content: '';
+    border: 4px solid map.get($dh-color-system, 'secondary');
+    width: 100%;
+    height: 100%;
+  }
   .fillSpan {
     transform: scale(2) translate(8px, -1px);
   }
   .MuiCardMedia-root.blog-post-preview-page-img {
     pointer-events: none;
-    background-color: map.get($dh-color-system, "white");
     object-fit: contain;
   }
   .MuiCardHeader-root {
@@ -36,7 +57,7 @@
     }
   }
   .MuiCardContent-root {
-    height: 150px;
+    height: max-content;
     > p {
       display: -webkit-box;
       -webkit-line-clamp: 3;
@@ -47,6 +68,14 @@
   .MuiCardActions-root {
     display: flex;
     justify-content: center;
-    padding: 2rem;
+    padding-bottom: 8px;
+  }
+  .MuiCardHeader-title {
+    font-weight: bolder;
+  }
+  .card-footer {
+    button {
+      z-index: 10;
+    }
   }
 }
