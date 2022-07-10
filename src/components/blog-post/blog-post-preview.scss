@@ -1,5 +1,6 @@
 @use 'sass:map';
 @import '../../scss/dh-nautilus.theme.scss';
+
 .MuiCard-root.blog-post-preview {
   overflow: visible;
   color: map.get($dh-color-system, 'dark');
@@ -7,16 +8,24 @@
   width: 300px;
   transition: all 0.4s cubic-bezier(0.49, 0.04, 0, 1);
 
-  &:hover {
+  &.animation-forward {
+    cursor: pointer;
+
     &::before {
-      top: 5px;
-      left: 5px;
-      width: calc(100% - 9px);
-      height: calc(100% - 9px);
+      animation: card-hover-before-animation 0.6s linear forwards;
+      animation-delay: 0.3s;
     }
     &::after {
-      top: 5px;
-      left: 5px;
+      animation: card-hover-after-animation 0.6s linear forwards;
+      animation-delay: 0.3s;
+    }
+  }
+  &.animation-reverse {
+    &::before {
+      animation: card-out-before-animation 0.8s ease-in-out forwards;
+    }
+    &::after {
+      animation: card-out-after-animation 0.8s ease-in-out forwards;
     }
   }
   &::before {
@@ -28,7 +37,7 @@
     border-top: 4px solid map.get($dh-color-system, 'dark');
     width: calc(100% - 14px);
     height: calc(100% - 24px);
-    z-index: 3;
+    z-index: 103;
   }
   &::after {
     position: absolute;
@@ -40,7 +49,41 @@
     height: 100%;
   }
   .fillSpan {
-    transform: scale(2) translate(8px, -1px);
+    opacity: 0;
+    position: absolute;
+    left: 350px;
+    color: map.get($dh-color-system, 'white');
+    border: 2px solid map.get($dh-color-system, 'secondary-lighter');
+    box-shadow: 5px 10px 1px 2px map.get($dh-color-system, 'secondary-lighter');
+    width: fit-content;
+    font-weight: bold;
+    background-color: rgba(map.get($dh-color-system, 'white'), 0.1);
+    border-radius: 4px;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: desc-animation 1s ease forwards;
+    ::before {
+      bottom: calc(50% + 2px);
+      content: '';
+      height: 50%;
+      left: -150px;
+      position: absolute;
+      background-color: map.get($dh-color-system, 'secondary');
+
+      width: 2px;
+    }
+    ::after {
+      content: '';
+      height: 2px;
+      left: -150px;
+      bottom: calc(50% + 2px);
+      position: absolute;
+      background-color: map.get($dh-color-system, 'secondary');
+      width: 150px;
+    }
   }
   .MuiCardMedia-root.blog-post-preview-page-img {
     pointer-events: none;
@@ -63,6 +106,7 @@
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      font-weight: bold;
     }
   }
   .MuiCardActions-root {
@@ -73,9 +117,99 @@
   .MuiCardHeader-title {
     font-weight: bolder;
   }
-  .card-footer {
-    button {
-      z-index: 10;
+}
+@mixin animation-mixin($selector, $reverse: null) {
+  @if $reverse !=null {
+    @if $selector == before {
+      @keyframes card-out-before-animation {
+        0% {
+          top: 5px;
+          left: 5px;
+          border-color: map.get($dh-color-system, 'dark');
+          width: calc(100% - 9px);
+          height: calc(100% - 9px);
+        }
+        50% {
+          top: 30px;
+          left: 15px;
+        }
+        100% {
+          top: 20px;
+          left: 10px;
+          border-color: map.get($dh-color-system, 'dark');
+          width: calc(100% - 14px);
+          height: calc(100% - 24px);
+        }
+      }
+    } @else {
+      @keyframes card-out-after-animation {
+        0% {
+          top: 5px;
+          left: 5px;
+          border-color: map.get($dh-color-system, 'secondary');
+        }
+        50% {
+          top: 30px;
+          left: 15px;
+        }
+        100% {
+          top: 20px;
+          left: 10px;
+          border-color: map.get($dh-color-system, 'secondary');
+        }
+      }
     }
+  } @else {
+    @if $selector == before {
+      @keyframes card-hover-before-animation {
+        0% {
+          top: 20px;
+          left: 10px;
+        }
+        50% {
+          top: -10px;
+          left: -10px;
+        }
+        100% {
+          top: 5px;
+          left: 5px;
+          border-color: map.get($dh-color-system, 'dark');
+          width: calc(100% - 9px);
+          height: calc(100% - 9px);
+          display: contents;
+        }
+      }
+    } @else {
+      @keyframes card-hover-after-animation {
+        0% {
+          top: 20px;
+          left: 10px;
+        }
+        50% {
+          top: -10px;
+          left: -10px;
+          border-color: map.get($dh-color-system, 'dark');
+        }
+        100% {
+          top: 5px;
+          left: 5px;
+          border-color: map.get($dh-color-system, 'secondary');
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+@include animation-mixin(before);
+@include animation-mixin(after);
+@include animation-mixin(before, true);
+@include animation-mixin(after, true);
+@keyframes desc-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
