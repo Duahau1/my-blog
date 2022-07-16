@@ -13,6 +13,8 @@ import { BlogContext } from '../../providers/blog-config.provider'
 import { ISOtoLocaleString } from '../../utils/date.utils'
 import ContentAuthor from './blog-post-author.component'
 
+import * as copySvg from '../../assets/copy-svgrepo-com.svg'
+
 export default function ContentProvider(props: any) {
   const client = useContext(BlogContext)
   const { state }: any = useLocation()
@@ -80,7 +82,7 @@ export default function ContentProvider(props: any) {
           blogPostContainer.querySelectorAll('code').forEach((codeElement: HTMLElement) => {
             if (codeElement.previousSibling == null) {
               const copySvgIcon = document.createElement('img')
-              copySvgIcon.setAttribute('src', copySvg)
+              copySvgIcon.setAttribute('src', copySvg.default)
               copySvgIcon.classList.add('copyToClipboard')
               codeElement.classList.add('codeContainer')
               hljs.highlightElement(codeElement)

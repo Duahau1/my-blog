@@ -6,11 +6,11 @@ import BlogPostPreview from '../blog-post/blog-post-preview.component'
 import './carousel.scss'
 export default function Carousel(props: any) {
   const SPEED = 5
-  const [carouselHeight, setCarouselHeight] = useState(window.innerHeight - 204)
+  const [carouselHeight, setCarouselHeight] = useState(window.innerHeight - 100)
   const [deg, setDeg] = useState(0)
   const [itemObj, setItemObj] = useState([])
   const [oldDeg, setOldDeg] = useState(0)
-  const [rangeX, setRangeX] = useState(window.innerWidth - 300)
+  const [rangeX, setRangeX] = useState(window.innerWidth - 350)
   const [show, setShow] = useState(false)
   const blogPostPreviews = props.items
   const [blockClick, setBlockClick] = useState(false)
@@ -76,7 +76,7 @@ export default function Carousel(props: any) {
   }
   useEffect(() => {
     function handleResize() {
-      setRangeX(window.innerWidth - 300)
+      setRangeX(window.innerWidth - 350)
     }
 
     window.addEventListener('resize', handleResize)
@@ -108,7 +108,7 @@ export default function Carousel(props: any) {
             onClick={handlePrev}
           ></ArrowBackIosNewIcon>
         ) : null}
-        <div>
+        <div className='main-carousel-contain'>
           {itemObj.map((blogPostPreview: any) => {
             return (
               <BlogPostPreview
